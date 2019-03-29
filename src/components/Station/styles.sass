@@ -1,0 +1,32 @@
+.station
+  display: flex
+  align-items: flex-start
+  max-width: 900px
+  &__title
+    display: inline-block
+    margin-bottom: 10px
+  &__prop
+    margin-bottom: 5px
+    font-size: 16px
+    color: rgba($color-text, .7)
+    line-height: 1.2
+  &__img
+    display: inline-block
+    width: 35%
+    min-width: 35%
+    margin-right: 10px
+    background-repeat: no-repeat
+    background-size: contain
+    background-position: top center
+  &__link
+    margin-top: 10px
+    font-size: 16px
+    a
+      +line-hover
+
+@media only screen and (min-width: 600px)
+  .station
+    &__img
+      min-width: 200px
+      max-width: 200px
+      margin-right: 25px

@@ -1,0 +1,19 @@
+.search
+  width: 100%
+  &__form
+    display: flex
+  &__field
+    max-width: 500px
+    width: 100%
+    +line-focus
+  input
+    padding: 5px 0
+    width: 100%
+  &__btn
+    padding: 5px
+    font-size: 18px
+    font-weight: bold
+    color: rgba($color-text, .5)
+    transition: $transition
+    &:hover
+      color: $color-accent
