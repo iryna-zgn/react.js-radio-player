@@ -31,6 +31,14 @@
       transition: $transition
       &:hover
         background-color: $color-accent
+    &::-moz-range-thumb
+      background-color: $color-text
+      cursor: pointer
+      border-radius: 50%
+      border: 0
+      transition: $transition
+      &:hover
+        background-color: $color-accent
 
 @media only screen and (min-width: 768px)
   .audio
