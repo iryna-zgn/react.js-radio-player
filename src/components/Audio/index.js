@@ -13,7 +13,10 @@ export default class Audio extends Component {
     }
 
     state = {
-        isPlaying: false
+        isPlaying: false,
+        isMuted: false,
+        volume: 50,
+        lastVolume: 50
     }
 
     render() {
@@ -21,10 +24,10 @@ export default class Audio extends Component {
             <div className='audio'>
                 <div className='audio__controls'>
                     { this.renderPlayBtn() }
+                    { this.renderVolumeBtn() }
+                    { this.renderVolumeBar() }
                 </div>
-                <audio
-                    ref={ this.audio }
-                    controls>
+                <audio ref={ this.audio }>
                     { this.renderSources() }
                 </audio>
             </div>
@@ -34,10 +37,32 @@ export default class Audio extends Component {
     renderPlayBtn = () => {
         return (
             <button
-                className='audio__play'
+                className='audio__btn'
                 onClick={ this.handlePlayBtn }>
                 <span className={ `icon-${this.state.isPlaying ? 'pause' : 'play'}-button` }/>
             </button>
+        )
+    }
+
+    renderVolumeBtn = () => {
+        return (
+            <button
+                className='audio__btn'
+                onClick={ this.handleMuteBtn }>
+                <span className={ `icon-${this.state.isMuted ? 'muted-' : ''}volume` }/>
+            </button>
+        )
+    }
+
+    renderVolumeBar = () => {
+        return (
+            <input
+                type='range'
+                min='0'
+                max='100'
+                value={ this.state.volume }
+                className='audio__slider'
+                onChange={ this.adjustVolume }/>
         )
     }
 
@@ -61,4 +86,47 @@ export default class Audio extends Component {
 
         this.state.isPlaying ? audio.pause() : audio.play()
     }
+
+    handleMuteBtn = () => {
+
+        if (this.state.isMuted) {
+            this.setState(state => ({
+                isMuted: false,
+                volume: this.state.lastVolume
+            }))
+            this.unmute()
+        } else {
+            this.setState(state => ({
+                isMuted: true,
+                volume: 0
+            }))
+            this.mute()
+        }
+    }
+
+    adjustVolume = e => {
+        const value = e.target.value
+
+        this.setState({
+            volume: value,
+            lastVolume: value,
+            isMuted: value === '0'
+        })
+        value === '0' ? this.mute() :  this.unmute()
+        this.changeVolume(this.state.volume * 0.01)
+    }
+
+    mute = () => {
+        this.audio.current.muted = true
+    }
+
+    unmute = () => {
+        this.audio.current.muted = false
+    }
+
+    changeVolume = val => {
+        this.audio.current.volume = val
+    }
+
+
 }

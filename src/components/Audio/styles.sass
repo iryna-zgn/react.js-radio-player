@@ -1,7 +1,43 @@
 .audio
-  margin: 20px 0
+  margin: 20px 0 30px
   &__controls
-  &__play
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    width: auto
+  &__btn
     display: inline-block
-    font-size: 46px
+    align-items: center
+    font-size: 30px
+    width: 36px
     +accent-hover
+    &:not(:last-child)
+      margin-right: 10px
+  &__slider
+    -webkit-appearance: none
+    height: 5px
+    margin: 20px 0
+    background-color: rgba($color-text, .07)
+    border-radius: 5px
+    outline: none
+    &::-webkit-slider-thumb
+      -webkit-appearance: none
+      appearance: none
+      width: 16px
+      height: 16px
+      background-color: $color-text
+      border-radius: 50%
+      cursor: pointer
+      transition: $transition
+      &:hover
+        background-color: $color-accent
+
+@media only screen and (min-width: 768px)
+  .audio
+    &__controls
+      margin-left: -7px
+    &__btn
+      font-size: 36px
+      &:not(:last-child)
+        margin-right: 25px
+

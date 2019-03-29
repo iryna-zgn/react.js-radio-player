@@ -22,12 +22,16 @@ export default class Station extends Component {
 
         return (
             <div className='station'>
-                <div
-                    className='station__img'
-                    style={{ backgroundImage: `url(${getImgPath(station.image.url)})` }}>
-                    <img src='static/images/hidden_250x250.jpg' alt='' className='u-hidden'/>
+                <div className='station__const'>
+                    <div
+                        className='station__img'
+                        style={{ backgroundImage: `url(${getImgPath(station.image.url)})` }}>
+                        <img src='static/images/hidden_250x250.jpg'
+                             alt=''
+                             className='u-hidden'/>
+                    </div>
                 </div>
-                <div>
+                <div className='station__var'>
                     <div className='station__title t2'>{ station.name }</div>
                     { this.renderCategories(station.categories) }
                     { this.renderCountry(station.country) }
