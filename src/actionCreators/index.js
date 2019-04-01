@@ -1,5 +1,5 @@
 import { actions } from './../constants'
-import { URL_POPULAR, URL_SEARCH, KEY, PER_PAGE } from './../paths'
+import { URL_POPULAR, URL_SEARCH, KEY, PER_PAGE } from './../links'
 import { modes } from './../constants'
 
 function getUrl(mode, query, page) {

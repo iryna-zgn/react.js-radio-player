@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from './../Logo'
 import SearchForm from './../SearchForm'
 import SocLinks from './../../components/SocLinks'
-import { RHO, socLinks } from './../../paths'
+import { RHO, socLinks } from './../../links'
 
 export default function Header() {
     return (
