@@ -11,7 +11,7 @@ export const RHO = {
 }
 
 export const socLinks = {
-    github: 'https://github.com/iryna-zgn',
+    github: 'https://github.com/iryna-zgn/react.js-radio-player',
     instagram: '',
     facebook: ''
 
