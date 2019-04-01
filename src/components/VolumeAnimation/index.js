@@ -12,8 +12,6 @@ const renderItems = () => {
 
 export default function VolumeAnimation() {
     return (
-        <div className='volume-animation'>
-            { renderItems() }
-        </div>
+        <div className='volume-animation'>{ renderItems() }</div>
     )
 }

@@ -1,9 +1,4 @@
-import { Map } from 'immutable'
 import { countries } from './countries'
-
-export function objToMap(obj, DataRecord = Map) {
-    return Object.keys(obj).reduce((acc, key) => acc.set(key, obj[key]), new DataRecord())
-}
 
 export function getImgPath(img) {
     return img ? img : 'static/images/rho_light.jpg'

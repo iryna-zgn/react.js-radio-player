@@ -55,7 +55,9 @@ class Station extends Component {
         const categoriesList = categories.map(category => category.title)
 
         return (
-            <div className='station__prop'>
+            <div
+                style={{ WebkitBoxOrient: 'vertical' }}
+                className='station__prop'>
                 { separateByCommas(categoriesList) }
             </div>
         )

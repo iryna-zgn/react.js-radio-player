@@ -1,10 +1,23 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import NoResults from './../../components/NoResults'
 import { classes } from './../../constants'
+import { loadStations, setQuery } from './../../actionCreators'
+import { modes } from './../../constants'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class SearchForm extends Component {
+    static propTypes = {
+        // from actionCreators
+        loadStations: PropTypes.func,
+        setQuery: PropTypes.func,
+        // from store
+        lastQuery: PropTypes.string,
+        resultsCount: PropTypes.number
+    }
+
     state = {
-        query: '',
         isFocus: false
     }
 
@@ -29,20 +42,22 @@ class SearchForm extends Component {
                     </div>
                     <button className='search__btn icon-search'/>
                 </form>
-                {/*{ this.renderMsg() }*/}
+                { this.renderMsg() }
             </div>
         )
     }
 
-    handleChange = e => {
-        this.setState({
-            query: e.target.value
-        })
-    }
+    handleChange = e => this.props.setQuery(e.target.value)
 
     handleSubmit = e => {
+        const { loadStations, history, lastQuery, query } = this.props
+
         e.preventDefault()
-        console.log('submit')
+
+        if (query && query !== lastQuery) {
+            loadStations(modes.SEARCH, query)
+            history.push(`/search/${query}`)
+        }
     }
 
     addFocus = () => {
@@ -58,8 +73,17 @@ class SearchForm extends Component {
     }
 
     renderMsg = () => {
+        if (this.props.resultsCount) return null
+
         return <NoResults/>
     }
 }
 
-export default SearchForm
+export default withRouter(connect(state => ({
+    lastQuery: state.stations.lastQuery,
+    query: state.stations.query,
+    resultsCount: state.stations.resultsCount
+}), {
+    loadStations,
+    setQuery
+})(SearchForm))

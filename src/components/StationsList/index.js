@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Station from './../Station'
 import LoadMore from './../LoadMore'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { POPULAR_STATIONS } from './../../popularStations'
+import { connect } from 'react-redux'
 
 
 class StationsList extends Component {
+    static propTypes = {
+        // from store
+        stations: PropTypes.array,
+        resultsCount: PropTypes.number
+    }
+
     render() {
         return (
             <div>
@@ -20,7 +27,7 @@ class StationsList extends Component {
     }
 
     renderItems = () => {
-        return POPULAR_STATIONS.map(station => {
+        return this.props.stations.map(station => {
             return (
                 <CSSTransition
                     key={ station.id }
@@ -28,8 +35,7 @@ class StationsList extends Component {
                     timeout={{ appear: 300, enter: 300, exit: 300 }}
                     appear>
                     <div className='stations-list__item'>
-                        <Station
-                            station={ station }/>
+                        <Station station={ station }/>
                     </div>
                 </CSSTransition>
             )
@@ -37,8 +43,13 @@ class StationsList extends Component {
     }
 
     renderLoadMore = () => {
+        if (this.props.resultsCount <= 10) return null
+
         return <LoadMore/>
     }
 }
 
-export default StationsList
+export default connect(state => ({
+    stations: state.stations.stations,
+    resultsCount: state.stations.resultsCount
+}))(StationsList)

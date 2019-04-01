@@ -11,7 +11,7 @@ export const classes = {
 
 export const actions = {
     LOAD_STATIONS: 'LOAD_STATIONS',
-    LOAD_NEXT_PAGE: 'LOAD_NEXT_PAGE',
+    LOAD_PAGE: 'LOAD_NEXT_PAGE',
     SET_QUERY: 'SET_QUERY',
     SET_ACTIVE_STATION_ID: 'SET_ACTIVE_STATION_ID',
     START: 'START',
