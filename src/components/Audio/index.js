@@ -1,9 +1,25 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { setActiveStationId } from './../../actionCreators'
+import VolumeAnimation from './../../components/VolumeAnimation'
 
-export default class Audio extends Component {
+class Audio extends Component {
     static propTypes = {
-        streams: PropTypes.array
+        // from component
+        streams: PropTypes.array,
+        id: PropTypes.number,
+        // from store
+        activeId: PropTypes.number,
+        // from action creators
+        setActiveStationId: PropTypes.func
+    }
+
+    state = {
+        isPlaying: false,
+        isMuted: false,
+        volume: 30,
+        lastVolume: 30
     }
 
     constructor(props) {
@@ -12,22 +28,19 @@ export default class Audio extends Component {
         this.audio = React.createRef()
     }
 
-    state = {
-        isPlaying: false,
-        isMuted: false,
-        volume: 50,
-        lastVolume: 50
-    }
-
     render() {
         return (
             <div className='audio'>
                 <div className='audio__controls'>
                     { this.renderPlayBtn() }
-                    { this.renderVolumeBtn() }
-                    { this.renderVolumeBar() }
+                    <div className='audio__volume'>
+                        { this.renderVolumeAnimation() }
+                        { this.renderVolumeBtn() }
+                        { this.renderVolumeBar() }
+                    </div>
                 </div>
                 <audio ref={ this.audio }>
+                    { this.setDefaultVolume(this.state.volume) }
                     { this.renderSources() }
                 </audio>
             </div>
@@ -45,22 +58,32 @@ export default class Audio extends Component {
     }
 
     renderVolumeBtn = () => {
+        const { isPlaying, isMuted } = this.state
+
+        if (!isPlaying) return null
+
         return (
-            <button
-                className='audio__btn'
-                onClick={ this.handleMuteBtn }>
-                <span className={ `icon-${this.state.isMuted ? 'muted-' : ''}volume` }/>
-            </button>
+            <div>
+                <button
+                    className='audio__volume-btn'
+                    onClick={ this.handleMuteBtn }>
+                    <span className={ `icon-${isMuted ? 'muted-' : '' }volume` }/>
+                </button>
+            </div>
         )
     }
 
     renderVolumeBar = () => {
+        const { isPlaying, volume } = this.state
+
+        if (!isPlaying) return null
+
         return (
             <input
                 type='range'
                 min='0'
                 max='100'
-                value={ this.state.volume }
+                value={ volume }
                 className='audio__slider'
                 onChange={ this.adjustVolume }/>
         )
@@ -77,56 +100,92 @@ export default class Audio extends Component {
         })
     }
 
+    renderVolumeAnimation = () => {
+        if (!this.state.isPlaying) return null
+
+        return (
+            <div className='audio__animation'>
+                <VolumeAnimation />
+            </div>
+        )
+    }
+
     handlePlayBtn = () => {
-        const audio = this.audio.current
+        const { id, setActiveStationId } = this.props
+        const { isPlaying } = this.state
 
-        this.setState(state => ({
-            isPlaying: !state.isPlaying
-        }))
+        this.pausePlaying()
 
-        this.state.isPlaying ? audio.pause() : audio.play()
+        this.setState(() => ({
+            isPlaying: !isPlaying
+        }), () => {
+            setActiveStationId(id)
+            isPlaying ? this.pause() : this.play()
+        })
     }
 
     handleMuteBtn = () => {
+        const { id, activeId } = this.props
 
-        if (this.state.isMuted) {
-            this.setState(state => ({
-                isMuted: false,
-                volume: this.state.lastVolume
-            }))
-            this.unmute()
-        } else {
-            this.setState(state => ({
-                isMuted: true,
-                volume: 0
-            }))
-            this.mute()
-        }
+        if (id !== activeId) return null
+
+        this.setState(state => ({
+            isMuted: !state.isMuted,
+            volume: state.isMuted ? state.lastVolume : 0
+        }))
+        this.state.isMuted ? this.unmute() : this.mute()
     }
 
     adjustVolume = e => {
+        const { id, activeId } = this.props
         const value = e.target.value
+
+        if (id !== activeId) return null
 
         this.setState({
             volume: value,
             lastVolume: value,
             isMuted: value === '0'
         })
+
         value === '0' ? this.mute() :  this.unmute()
-        this.changeVolume(this.state.volume * 0.01)
+
+        this.setVolume(this.state.volume)
     }
 
-    mute = () => {
-        this.audio.current.muted = true
+    play = () =>  this.audio.current.play()
+
+    pause = () =>  this.audio.current.pause()
+
+    pausePlaying = () => {
+        document.querySelectorAll('audio').forEach(audio => {
+            if (!audio.paused) audio.pause()
+        })
     }
 
-    unmute = () => {
-        this.audio.current.muted = false
+    mute = () => this.audio.current.muted = true
+
+    unmute = () => this.audio.current.muted = false
+
+    setVolume = val => this.audio.current.volume = val * 0.01
+
+    setDefaultVolume = val => {
+        document.querySelectorAll('audio')
+            .forEach(audio => audio.volume = val * 0.01)
     }
 
-    changeVolume = val => {
-        this.audio.current.volume = val
+    componentWillReceiveProps(nextProps) {
+        const { id } = this.props
+        const { activeId } = nextProps
+
+        this.setState({
+            isPlaying: id === activeId
+        })
     }
-
-
 }
+
+export default connect(state => ({
+    activeId: state.stations.activeStationId
+}), {
+    setActiveStationId
+})(Audio)

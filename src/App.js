@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Footer from './components/Footer'
-import Preloader from './components/Preloader'
+import Bounce from './components/Bounce'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
@@ -30,7 +30,7 @@ class App extends Component {
     }
 
     renderPreloader = () => {
-        if (this.props.loading) return <Preloader isFixed/>
+        if (this.props.loading) return <Bounce isFixed/>
     }
 }
 

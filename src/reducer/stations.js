@@ -5,6 +5,7 @@ import { objToMap } from './../helpers'
 import { modes } from './../constants'
 
 const ReducerState = Record({
+    activeStationId: null,
     mode: modes.POPULAR,
     query: '',
     lastQuery: '',
@@ -32,6 +33,9 @@ export default (state = new ReducerState(), action) => {
 
         case actions.SET_QUERY:
             return state.set('query', payload.query)
+
+        case actions.SET_ACTIVE_STATION_ID:
+            return state.set('activeStationId', payload.id)
 
         default:
             return state

@@ -4,7 +4,7 @@ import { getImgPath, getCountryName, separateByCommas } from './../../helpers'
 import Audio from './../../components/Audio'
 import SocLinks from './../../components/SocLinks'
 
-export default class Station extends Component {
+class Station extends Component {
     static propTypes = {
         station: PropTypes.shape({
             name: PropTypes.string,
@@ -35,7 +35,9 @@ export default class Station extends Component {
                     <div className='station__title t2'>{ station.name }</div>
                     { this.renderCategories(station.categories) }
                     { this.renderCountry(station.country) }
-                    <Audio streams = { station.streams }/>
+                    <Audio
+                        streams = { station.streams }
+                        id = { station.id }/>
                     <SocLinks
                         links = {{
                             facebook: station.facebook,
@@ -85,3 +87,5 @@ export default class Station extends Component {
         )
     }
 }
+
+export default Station

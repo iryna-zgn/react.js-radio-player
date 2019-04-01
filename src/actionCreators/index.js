@@ -30,3 +30,10 @@ export function setQuery(query) {
         payload: { query }
     }
 }
+
+export function setActiveStationId(id) {
+    return {
+        type: actions.SET_ACTIVE_STATION_ID,
+        payload: { id }
+    }
+}
