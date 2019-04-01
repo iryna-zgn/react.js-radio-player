@@ -2,7 +2,7 @@
 
 This project is based on [Dirble](https://dirble.com/api-doc) API.
 
-[Link on GitHub Page](https://iryna-zgn.github.io/react.js-movie-db)
+[Link on GitHub Page](https://iryna-zgn.github.io/react.js-radio-player)
 
 ## Project setup
 ```
