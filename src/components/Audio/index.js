@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setActiveStationId } from './../../actionCreators'
-import VolumeAnimation from './../../components/VolumeAnimation'
 
 class Audio extends Component {
     static propTypes = {
@@ -34,7 +33,6 @@ class Audio extends Component {
                 <div className='audio__controls'>
                     { this.renderPlayBtn() }
                     <div className='audio__volume'>
-                        { this.renderVolumeAnimation() }
                         { this.renderVolumeBtn() }
                         { this.renderVolumeBar() }
                     </div>
@@ -100,16 +98,6 @@ class Audio extends Component {
         })
     }
 
-    renderVolumeAnimation = () => {
-        if (!this.state.isPlaying) return null
-
-        return (
-            <div className='audio__animation'>
-                <VolumeAnimation />
-            </div>
-        )
-    }
-
     handlePlayBtn = () => {
         const { id, setActiveStationId } = this.props
         const { isPlaying } = this.state
@@ -119,7 +107,7 @@ class Audio extends Component {
         this.setState(() => ({
             isPlaying: !isPlaying
         }), () => {
-            setActiveStationId(id)
+            setActiveStationId(isPlaying ? null : id)
             isPlaying ? this.pause() : this.play()
         })
     }

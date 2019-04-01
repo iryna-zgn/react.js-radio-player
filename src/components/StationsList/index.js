@@ -43,7 +43,7 @@ class StationsList extends Component {
     }
 
     renderLoadMore = () => {
-        if (this.props.resultsCount <= 10) return null
+        if (this.props.resultsCount < 10) return null
 
         return <LoadMore/>
     }

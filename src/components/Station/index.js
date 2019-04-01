@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { getImgPath, getCountryName, separateByCommas } from './../../helpers'
 import Audio from './../../components/Audio'
 import SocLinks from './../../components/SocLinks'
+import VolumeAnimation from './../../components/VolumeAnimation'
+import { connect } from 'react-redux'
 
 class Station extends Component {
     static propTypes = {
@@ -14,7 +16,9 @@ class Station extends Component {
             facebook: PropTypes.string,
             twitter: PropTypes.string,
             website: PropTypes.string
-        })
+        }),
+        // from store
+        activeId: PropTypes.number
     }
 
     render() {
@@ -32,7 +36,10 @@ class Station extends Component {
                     </div>
                 </div>
                 <div className='station__var'>
-                    <div className='station__title t2'>{ station.name }</div>
+                    <div className='station__title t2'>
+                        { station.name }
+                        { this.renderVolumeAnimation(station.id) }
+                    </div>
                     { this.renderCategories(station.categories) }
                     { this.renderCountry(station.country) }
                     <Audio
@@ -88,6 +95,16 @@ class Station extends Component {
             </div>
         )
     }
+
+    renderVolumeAnimation = (id) => {
+        if (id !== this.props.activeId) return null
+
+        return (
+            <VolumeAnimation />
+        )
+    }
 }
 
-export default Station
+export default connect(state => ({
+    activeId: state.stations.activeStationId
+}))(Station)
