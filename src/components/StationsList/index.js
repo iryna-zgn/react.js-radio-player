@@ -4,7 +4,6 @@ import Station from './../Station'
 import LoadMore from './../LoadMore'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
-import { POPULAR_STATIONS } from './../../popularStations'
 
 
 class StationsList extends Component {
@@ -28,7 +27,7 @@ class StationsList extends Component {
     }
 
     renderItems = () => {
-        return POPULAR_STATIONS.map(station => {
+        return this.props.stations.map(station => {
             return (
                 <CSSTransition
                     key={ station.id }
