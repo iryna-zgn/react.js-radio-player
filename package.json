@@ -2,7 +2,7 @@
   "name": "rho-movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://iryna-zgn.github.io/react.js-movie-db",
+  "homepage": "https://iryna-zgn.github.io/react.js-radio-player",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "immutable": "^4.0.0-rc.12",
