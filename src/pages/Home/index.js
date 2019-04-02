@@ -17,7 +17,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.props.loadStations()
+        // this.props.loadStations()
     }
 }
 

@@ -104,13 +104,18 @@ class Audio extends Component {
 
         this.pausePlaying()
 
-        this.setState(() => ({
-            isPlaying: !isPlaying
-        }), () => {
-            setActiveStationId(isPlaying ? null : id)
-            isPlaying ? this.pause() : this.play()
-        })
+        this.audio.current.play()
+            .then(() => {
+                this.setState(() => ({
+                    isPlaying: !isPlaying
+                }), () => {
+                    setActiveStationId(isPlaying ? null : id)
+                    isPlaying ? this.pause() : this.play()
+                })
+            })
+            .catch(err => console.log(err))
     }
+
 
     handleMuteBtn = () => {
         const { id, activeId } = this.props
@@ -136,12 +141,12 @@ class Audio extends Component {
             isMuted: value === '0'
         })
 
-        value === '0' ? this.mute() :  this.unmute()
+        value === '0' ? this.mute() : this.unmute()
 
         this.setVolume(this.state.volume)
     }
 
-    play = () =>  this.audio.current.play()
+    play = () => this.audio.current.play()
 
     pause = () =>  this.audio.current.pause()
 

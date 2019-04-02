@@ -14,12 +14,9 @@ export default (state = new ReducerState(), action) => {
 
     switch (type) {
         case actions.CHANGE_THEME:
-            const { isDay } = payload
-            const theme = isDay ? 'isDay' : 'isNight'
-
             return state
-                    .set('isDay', isDay)
-                    .set('styles', themes[theme])
+                    .set('isDay', payload.isDay)
+                    .set('styles', themes[payload.isDay ? 'isDay' : 'isNight'])
 
         default:
             return state

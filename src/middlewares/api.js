@@ -1,6 +1,6 @@
 import { actions } from './../constants'
 
-export default store => next => action => {
+export default () => next => action => {
     const { callAPI, type, ...rest } = action
     if (!callAPI) return next(action)
 
