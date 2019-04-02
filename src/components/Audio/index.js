@@ -99,21 +99,23 @@ class Audio extends Component {
     }
 
     handlePlayBtn = () => {
-        const { id, setActiveStationId } = this.props
+        const { id, activeId, setActiveStationId } = this.props
         const { isPlaying } = this.state
 
         this.pausePlaying()
 
-        this.audio.current.play()
+        this.play()
             .then(() => {
                 this.setState(() => ({
                     isPlaying: !isPlaying
-                }), () => {
-                    setActiveStationId(isPlaying ? null : id)
-                    isPlaying ? this.pause() : this.play()
-                })
+                }), () => setActiveStationId(isPlaying ? null : id))
             })
-            .catch(err => console.log(err))
+            .then(() => {
+                if (id === activeId) this.pause()
+            })
+            .catch(() => {
+                setActiveStationId(null)
+            })
     }
 
 

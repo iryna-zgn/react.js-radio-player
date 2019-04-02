@@ -1,6 +1,6 @@
 # Radio player
 
-This project is based on [Dirble](https://dirble.com/api-doc) API.
+This project is based on [Dirble API](https://dirble.com/api-doc).
 
 [Link on GitHub Page](https://iryna-zgn.github.io/react.js-radio-player)
 

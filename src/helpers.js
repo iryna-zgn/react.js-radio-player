@@ -18,5 +18,5 @@ export function separateByCommas(arr) {
 export function isDay() {
     const hours = (new Date()).getHours()
 
-    return hours > 6 && hours < 23
+    return hours > 6 && hours < 20
 }
