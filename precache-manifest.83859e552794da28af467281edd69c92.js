@@ -20,19 +20,19 @@ self.__precacheManifest = [
     "url": "/react.js-radio-player/static/js/runtime~main.c1ddaa22.js"
   },
   {
-    "revision": "8f7155c947a36b931771",
-    "url": "/react.js-radio-player/static/js/main.e315c7f6.chunk.js"
+    "revision": "a6f7437492f6d19830e3",
+    "url": "/react.js-radio-player/static/js/main.7f40c1bc.chunk.js"
   },
   {
     "revision": "339341509591779d7786",
     "url": "/react.js-radio-player/static/js/2.788fdb4e.chunk.js"
   },
   {
-    "revision": "8f7155c947a36b931771",
+    "revision": "a6f7437492f6d19830e3",
     "url": "/react.js-radio-player/static/css/main.2e63b5a0.chunk.css"
   },
   {
-    "revision": "90b039dd48930397078915258d10a166",
+    "revision": "c47d767a3b876f1bb4b02fb96b076073",
     "url": "/react.js-radio-player/index.html"
   }
 ];
