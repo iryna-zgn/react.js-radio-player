@@ -16,23 +16,23 @@ self.__precacheManifest = [
     "url": "/react.js-radio-player/static/media/icomoon.11eae06d.eot"
   },
   {
-    "revision": "4df6f779d80db895e857",
-    "url": "/react.js-radio-player/static/js/runtime~main.785d81c3.js"
+    "revision": "bf440a2fcc3f03cd1aeb",
+    "url": "/react.js-radio-player/static/js/runtime~main.c1ddaa22.js"
   },
   {
-    "revision": "f1540b7cdde1f98f44aa",
-    "url": "/react.js-radio-player/static/js/main.58c57f8d.chunk.js"
+    "revision": "8f7155c947a36b931771",
+    "url": "/react.js-radio-player/static/js/main.e315c7f6.chunk.js"
   },
   {
-    "revision": "e3eaa7639ce065ae6c20",
-    "url": "/react.js-radio-player/static/js/2.97c2e382.chunk.js"
+    "revision": "339341509591779d7786",
+    "url": "/react.js-radio-player/static/js/2.788fdb4e.chunk.js"
   },
   {
-    "revision": "f1540b7cdde1f98f44aa",
-    "url": "/react.js-radio-player/static/css/main.60355129.chunk.css"
+    "revision": "8f7155c947a36b931771",
+    "url": "/react.js-radio-player/static/css/main.2e63b5a0.chunk.css"
   },
   {
-    "revision": "1a25b89964acba7b5c4658e1a639c9c7",
+    "revision": "90b039dd48930397078915258d10a166",
     "url": "/react.js-radio-player/index.html"
   }
 ];
