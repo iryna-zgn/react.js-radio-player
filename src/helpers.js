@@ -1,7 +1,8 @@
 import { countries } from './countries'
 
 export function getImgPath(img) {
-    return img ? img : 'static/images/rho_light.jpg'
+    if (!img) return null
+    return img
 }
 
 export function getCountryName(code) {
@@ -12,4 +13,10 @@ export function getCountryName(code) {
 
 export function separateByCommas(arr) {
     if (arr) return arr.reduce((acc, el, index) => acc + (index ? `, ${el.toLowerCase()}` : el) , '')
+}
+
+export function isDay() {
+    const hours = (new Date()).getHours()
+
+    return hours > 6 && hours < 23
 }

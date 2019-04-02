@@ -13,7 +13,11 @@
     padding: 5px
     font-size: 18px
     font-weight: bold
-    color: rgba($color-text, .5)
+    opacity: .5
     transition: $transition
     &:hover
       color: $color-accent
+
+.is-night
+  .search__field
+    +line-focus-night-override

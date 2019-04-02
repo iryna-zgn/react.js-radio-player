@@ -14,7 +14,7 @@
   &__prop
     margin-bottom: 5px
     font-size: 16px
-    color: rgba($color-text, .7)
+    opacity: .7
     line-height: 1.2
     +overflow-text()
   &__img
@@ -34,3 +34,7 @@
       min-width: 200px
       max-width: 200px
       margin-right: 40px
+
+.is-night
+  .station__link a
+    +line-hover-night-override

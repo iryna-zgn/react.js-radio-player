@@ -34,6 +34,13 @@ export function setQuery(query) {
 export function setActiveStationId(id) {
     return {
         type: actions.SET_ACTIVE_STATION_ID,
-        payload: { id }
+        payload: {id}
+    }
+}
+
+export function changeTheme(isDay) {
+    return {
+        type: actions.CHANGE_THEME,
+        payload: { isDay }
     }
 }

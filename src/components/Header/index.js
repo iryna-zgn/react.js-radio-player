@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from './../Logo'
 import SearchForm from './../SearchForm'
+import ThemeButton from './../ThemeButton'
 import SocLinks from './../../components/SocLinks'
 import { RHO, socLinks } from './../../links'
 
@@ -14,6 +15,7 @@ export default function Header() {
                 <SearchForm/>
             </div>
             <div className='header__links'>
+                <ThemeButton/>
                 <SocLinks
                     links = { socLinks }/>
                 <Logo

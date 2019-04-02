@@ -37,6 +37,12 @@
     &:after
       width: 50%
 
+@mixin line-hover-night-override
+  color: rgba($color-text-night, .6)
+  border-color: rgba($color-text-night, .2)
+  &:hover
+    color: $color-accent
+
 @mixin line-focus
   position: relative
   display: inline-block
@@ -63,6 +69,12 @@
     input
       border-bottom-color: transparent
 
+@mixin line-focus-night-override
+  border-color: rgba($color-text-night, .2)
+  &:before,
+  &:after
+    background-color: rgba($color-text-night, .25)
+
 @mixin img-hover
   position: relative
   cursor: pointer
@@ -88,3 +100,17 @@
   cursor: pointer
   &:hover
     color: $color-accent
+
+@mixin accent-bg-hover
+  background-color: $color-text
+  transition: $transition
+  cursor: pointer
+  &:hover
+    background-color: $color-accent
+
+
+@mixin accent-bg-hover-night-override
+  background-color: $color-text-night
+  &:hover
+    background-color: $color-accent
+

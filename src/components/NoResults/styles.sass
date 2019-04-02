@@ -1,9 +1,13 @@
 .no-results
   &__msg
     margin-top: 5px
-    color: rgba($color-text, .5)
+    opacity: .5
     font-size: 14px
   &__link
     margin-top: 30px
     font-size: 16px
     +line-hover
+
+.is-night
+  .no-results__link
+    +line-hover-night-override

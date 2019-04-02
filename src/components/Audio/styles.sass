@@ -28,22 +28,24 @@
     &::-webkit-slider-thumb
       -webkit-appearance: none
       appearance: none
-      width: 16px
-      height: 16px
-      background-color: $color-text
+      width: 12px
+      height: 12px
       border-radius: 50%
-      cursor: pointer
-      transition: $transition
-      &:hover
-        background-color: $color-accent
+      +accent-bg-hover
     &::-moz-range-thumb
-      background-color: $color-text
       cursor: pointer
       border-radius: 50%
       border: 0
-      transition: $transition
-      &:hover
-        background-color: $color-accent
+      +accent-bg-hover
+
+.is-night
+  .audio
+    &__slider
+      background-color: rgba($color-text-night, .07)
+      &::-webkit-slider-thumb
+        +accent-bg-hover-night-override
+      &::-moz-range-thumb
+        +accent-bg-hover-night-override
 
 @media only screen and (min-width: 768px)
   .audio

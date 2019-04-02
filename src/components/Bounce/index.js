@@ -7,7 +7,8 @@ export default function Bounce(props) {
   if (props.isFixed) className += ` ${classes.IS_FIXED}`
 
   return (
-      <div className={ className }>
+      <div style={ props.style }
+          className={ className }>
           <div className='bounce__inner'/>
       </div>
   )

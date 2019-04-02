@@ -12,22 +12,27 @@ class App extends Component {
     static propTypes = {
         // from store
         query: PropTypes.string,
-        loading: PropTypes.bool
+        loading: PropTypes.bool,
+        isDayTheme: PropTypes.bool,
+        themeStyles: PropTypes.object
     }
 
     render() {
         return (
-            <div className='container'>
-                <div>
-                    <Header/>
-                    <Switch>
-                        <Route exact path='/' component={ Home }/>
-                        <Route path='/search/:query' render={ this.getSearch }/>
-                    </Switch>
-                </div>
-                <div>
-                  <Footer/>
-                  { this.renderPreloader() }
+            <div className={ this.getThemeClass() }
+                style={ this.props.themeStyles }>
+                <div className='container'>
+                    <div>
+                        <Header/>
+                        <Switch>
+                            <Route exact path='/' component={ Home }/>
+                            <Route path='/search/:query' render={ this.getSearch }/>
+                        </Switch>
+                    </div>
+                    <div>
+                        <Footer/>
+                        { this.renderPreloader() }
+                    </div>
                 </div>
             </div>
         )
@@ -40,11 +45,21 @@ class App extends Component {
     }
 
     renderPreloader = () => {
-        if (this.props.loading) return <Bounce isFixed/>
+        if (!this.props.loading) return null
+
+        return <Bounce
+            style={{ background: this.props.themeStyles.background }}
+            isFixed/>
+    }
+
+    getThemeClass = () => {
+        if (!this.props.isDayTheme) return 'is-night'
     }
 }
 
 export default connect(state => ({
     query: state.stations.query,
-    loading: state.stations.loading
+    loading: state.stations.loading,
+    isDayTheme: state.themes.isDay,
+    themeStyles: state.themes.styles
 }))(App)
