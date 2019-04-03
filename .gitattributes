@@ -1,3 +1,3 @@
 /src/links.js filter=git-crypt diff=git-crypt
-stations.js filter=git-crypt diff=git-crypt
+stationsPopular.js filter=git-crypt diff=git-crypt
 *.key filter=git-crypt diff=git-crypt
