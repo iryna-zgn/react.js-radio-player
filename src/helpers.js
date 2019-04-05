@@ -1,4 +1,4 @@
-import { countries } from './countries'
+import { countries } from './countriesList'
 
 export function getImgPath(img) {
     if (!img) return null
