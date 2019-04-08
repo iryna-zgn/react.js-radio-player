@@ -103,6 +103,7 @@ class Audio extends Component {
         const { isPlaying } = this.state
 
         this.pausePlaying()
+        setActiveStationId(null)
 
         this.play()
             .then(() => {
@@ -113,9 +114,7 @@ class Audio extends Component {
             .then(() => {
                 if (id === activeId) this.pause()
             })
-            .catch(() => {
-                setActiveStationId(null)
-            })
+            .catch((err) => console.log(err))
     }
 
 
