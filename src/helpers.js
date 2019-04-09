@@ -1,4 +1,12 @@
 import { countries } from './countriesList'
+import { URL_POPULAR, URL_SEARCH, KEY, PER_PAGE } from './links'
+import { modes } from './constants'
+
+export function getUrl(mode, query, page) {
+    return mode === modes.POPULAR
+        ? `${URL_POPULAR}?page=${page}&per_page=${PER_PAGE}&token=${KEY}`
+        : `${URL_SEARCH}/${query}?page=${page}&per_page=${PER_PAGE}&token=${KEY}`
+}
 
 export function getImgPath(img) {
     if (!img) return null

@@ -54,10 +54,13 @@ class SearchForm extends Component {
 
         e.preventDefault()
 
-        if (query && query !== lastQuery) {
-            loadStations(modes.SEARCH, query)
-            history.push(`/search/${query}`)
-        }
+        const load = new Promise(resolve => {
+            if (query && query !== lastQuery) resolve()
+        })
+
+        load
+            .then(() => loadStations(modes.SEARCH, query))
+            .then(() => history.push(`/search/${query}`))
     }
 
     addFocus = () => {

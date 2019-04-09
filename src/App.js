@@ -11,7 +11,6 @@ import { Route, Switch } from 'react-router-dom'
 class App extends Component {
     static propTypes = {
         // from store
-        query: PropTypes.string,
         loading: PropTypes.bool,
         isDayTheme: PropTypes.bool,
         themeStyles: PropTypes.object
@@ -58,7 +57,6 @@ class App extends Component {
 }
 
 export default connect(state => ({
-    query: state.stations.query,
     loading: state.stations.loading,
     isDayTheme: state.themes.isDay,
     themeStyles: state.themes.styles

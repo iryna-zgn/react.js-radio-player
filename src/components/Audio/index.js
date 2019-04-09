@@ -114,7 +114,7 @@ class Audio extends Component {
             .then(() => {
                 if (id === activeId) this.pause()
             })
-            .catch((err) => console.log(err))
+            .catch(err => console.log(err))
     }
 
 

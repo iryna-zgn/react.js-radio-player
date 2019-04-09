@@ -1,12 +1,6 @@
 import { actions } from './../constants'
-import { URL_POPULAR, URL_SEARCH, KEY, PER_PAGE } from './../links'
 import { modes } from './../constants'
-
-function getUrl(mode, query, page) {
-    return mode === modes.POPULAR
-        ? `${URL_POPULAR}?page=${page}&per_page=${PER_PAGE}&token=${KEY}`
-        : `${URL_SEARCH}/${query}?page=${page}&per_page=${PER_PAGE}&token=${KEY}`
-}
+import { getUrl } from './../helpers'
 
 export function loadStations(mode = modes.POPULAR, query='', page = 1) {
     return {
